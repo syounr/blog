@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  postgres:
+    container_name: gb_blog
+    image: postgres
+    environment:
+      - POSTGRES_DB=gb_blog
+      - POSTGRES_USER=geekbrains
+      - POSTGRES_PASSWORD=NnVwGEOcn6PGBFBDColnzvUS5G59
+    restart: unless-stopped
+    volumes:
+      - ./etc/db/data:/var/lib/postgresql/data1
+    ports:
+      - '5435:5432'
