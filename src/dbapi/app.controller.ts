@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { Posts } from './database/entities/post.entity';
 
@@ -12,7 +20,7 @@ export class AppController {
   }
 
   @Get('get-one')
-  async getPost(@Query() query: {id: number}): Promise<Posts | undefined> {
+  async getPost(@Query() query: { id: number }): Promise<Posts | undefined> {
     return this.appService.getPost(query.id);
   }
 
@@ -22,8 +30,7 @@ export class AppController {
   }
 
   @Delete('delete')
-  async deletePost(@Body() body: {id: number}): Promise<Posts> {
-    
+  async deletePost(@Body() body: { id: number }): Promise<Posts> {
     return this.appService.deletePost(body.id);
   }
 
@@ -31,5 +38,4 @@ export class AppController {
   async updatePost(@Body() data: Posts): Promise<Posts> {
     return this.appService.updatePost(data);
   }
-
 }

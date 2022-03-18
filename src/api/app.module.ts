@@ -1,12 +1,10 @@
-import { forwardRef, Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Posts } from './dto/post.dto';
 
 @Module({
   imports: [],
   controllers: [AppController],
-  providers: [Array,AppService],
+  providers: [Array, AppService],
 })
 export class AppModule {}

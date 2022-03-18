@@ -6,11 +6,8 @@ import { DatabaseModule } from './database/database.module';
 import { Posts } from './database/entities/post.entity';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    TypeOrmModule.forFeature([Posts]),
-  ],
+  imports: [DatabaseModule, TypeOrmModule.forFeature([Posts])],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
