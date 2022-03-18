@@ -6,12 +6,12 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "start": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/src/api/main.js\"",
+    "start:api:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/src/dbapi/main.js\"",
     "prebuild": "rimraf dist",
     "build": "rimraf dist && tsc && npm run copy-files",
     "copy-files": "copyfiles -a .env \"prisma/**/*\" dist/",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -19,7 +19,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "typeorm:migration:generate": "npm run typeorm -- migration:generate -n",
+    "typeorm:migration:create": "npm run typeorm -- migration:create -n",
+    "typeorm:migration:run": "npm run typeorm -- migration:run",
+    "typeorm:migration:revert": "npm run typeorm -- migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -41,6 +46,7 @@
     "@types/jest": "27.4.1",
     "@types/node": "^16.0.0",
     "@types/supertest": "^2.0.11",
+    "tsc-watch": "4.5.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.1",
