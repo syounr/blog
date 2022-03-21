@@ -24,7 +24,7 @@ export class AppController {
     return this.appService.getPost(query.id);
   }
 
-  @Put('create')
+  @Post('create')
   async createPost(@Body() data: Posts): Promise<Posts> {
     return this.appService.createPost(data);
   }
@@ -34,7 +34,7 @@ export class AppController {
     return this.appService.deletePost(body.id);
   }
 
-  @Post('update')
+  @Put('update')
   async updatePost(@Body() data: Posts): Promise<Posts> {
     return this.appService.updatePost(data);
   }
