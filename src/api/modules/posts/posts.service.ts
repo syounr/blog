@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Posts } from './dto/post.dto';
+import { Posts } from '../../dto/post.dto';
 
 const posts: Posts[] = [
   {
@@ -9,13 +9,22 @@ const posts: Posts[] = [
     text: 'first',
     createdAt: new Date(Date.now()),
     updatedAt: new Date(Date.now()),
+    comments: [{
+      id: 1,
+      text: 'comment',
+      createdAt: new Date(Date.now()),
+    },
+    {
+      id: 2,
+      text: 'second comment',
+      createdAt: new Date(Date.now()),
+    }]
   },
 ];
 
 @Injectable()
-export class AppService {
+export class PostsService {
   async getPosts(): Promise<Posts[]> {
-    console.log(posts);
     return posts;
   }
 

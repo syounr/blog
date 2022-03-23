@@ -11,7 +11,7 @@ export class AppService {
   ) {}
 
   async getPosts(): Promise<Posts[]> {
-    const posts = this.postsRepository.find();
+    const posts = this.postsRepository.find({relations: ['comments']});
     return posts;
   }
 

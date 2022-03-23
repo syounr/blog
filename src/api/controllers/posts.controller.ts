@@ -7,12 +7,12 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { AppService } from './app.service';
-import { Posts } from './dto/post.dto';
+import { PostsService } from '../modules/posts/posts.service';
+import { Posts } from '../dto/post.dto';
 
 @Controller('posts')
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class PostsController {
+  constructor(private readonly appService: PostsService) {}
 
   @Get('get-all')
   async getPosts(): Promise<Posts[]> {
