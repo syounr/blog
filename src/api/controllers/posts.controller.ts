@@ -8,34 +8,34 @@ import {
   Query,
 } from '@nestjs/common';
 import { PostsService } from '../modules/posts/posts.service';
-import { Posts } from '../dto/post.dto';
+import { PostsDTO } from '../dto/post.dto';
 
 @Controller('posts')
 export class PostsController {
   constructor(private readonly appService: PostsService) {}
 
   @Get('get-all')
-  async getPosts(): Promise<Posts[]> {
+  async getPosts(): Promise<PostsDTO[]> {
     return this.appService.getPosts();
   }
 
   @Get('get-one')
-  async getPost(@Query() query: { id: number }): Promise<Posts | undefined> {
+  async getPost(@Query() query: { id: number }): Promise<PostsDTO | undefined> {
     return this.appService.getPost(query.id);
   }
 
   @Post('create')
-  async createPost(@Body() data: Posts): Promise<Posts> {
+  async createPost(@Body() data: PostsDTO): Promise<PostsDTO> {
     return this.appService.createPost(data);
   }
 
   @Delete('delete')
-  async deletePost(@Body() body: { id: number }): Promise<Posts[]> {
+  async deletePost(@Body() body: { id: number }): Promise<PostsDTO[]> {
     return this.appService.deletePost(body.id);
   }
 
   @Put('update')
-  async updatePost(@Body() data: Posts): Promise<Posts> {
+  async updatePost(@Body() data: PostsDTO): Promise<PostsDTO> {
     return this.appService.updatePost(data);
   }
 }
