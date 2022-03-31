@@ -5,11 +5,13 @@ import { PostsService } from '../posts/posts.service';
 import * as fs from 'fs';
 import { Response } from 'express';
 import { MyLogger } from '../logger/logger.service';
+import { MailService } from '../../../mail/mail.service';
 
 @Injectable()
 export class CommentsService {
   constructor(
     private readonly postsService: PostsService,
+    private readonly mailService: MailService,
     private myLogger: MyLogger,
   ) {
     this.myLogger.setContext('CommentsService');
@@ -26,6 +28,7 @@ export class CommentsService {
   }
 
   async createComment(postId: number, data: CommentDTO): Promise<CommentDTO> {
+    await this.mailService.sendLogMessage('gbtestar@mail.ru');
     const posts = await this.postsService.getPosts();
     posts[postId].comments.push(data);
     return data;

@@ -5,15 +5,11 @@ import { PostsController } from './controllers/posts.controller';
 import { CommentsController } from './controllers/comments.controller';
 import { MulterModule } from '@nestjs/platform-express';
 import { LoggerModule } from './modules/logger/logger.module';
+import { MailModule } from '../mail/mail.module';
+import { MailController } from '../mail/mail.controller';
 
 @Module({
-  imports: [
-    PostsModule,
-    CommentsModule,
-    // MulterModule.register({
-    //   dest: './upload',
-    // })
-  ],
-  controllers: [PostsController, CommentsController],
+  imports: [PostsModule, CommentsModule, MailModule],
+  controllers: [PostsController, CommentsController, MailController],
 })
 export class ApiModule {}

@@ -10,7 +10,7 @@
     "start:api:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/src/dbapi/main.js\"",
     "prebuild": "rimraf dist",
     "build": "rimraf dist && tsc && npm run copy-files",
-    "copy-files": "copyfiles -a .env \"prisma/**/*\" dist/",
+    "copy-files": "copyfiles -a .env views/index.hbs views/templates/test.hbs dist/",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -27,6 +27,7 @@
     "typeorm:migration:revert": "npm run typeorm -- migration:revert"
   },
   "dependencies": {
+    "@nestjs-modules/mailer": "^1.6.1",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
@@ -35,6 +36,9 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "copyfiles": "2.4.1",
+    "handlebars": "^4.7.7",
+    "hbs": "^4.2.0",
+    "nodemailer": "^6.7.3",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

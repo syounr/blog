@@ -5,6 +5,7 @@ import {
   Get,
   Post,
   Query,
+  Render,
   Res,
   StreamableFile,
   UploadedFile,
@@ -25,6 +26,12 @@ import { LoggingInterceptor } from '../modules/logger/logger.interceptor';
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
+  @Get('template')
+  @Render('index')
+  getTemplate(): { message: string } {
+    return { message: 'Hello world!' };
+  }
+
   @Get('/')
   async getComments(
     @Query() @DecrementId(['id']) query: { id: number },
@@ -32,7 +39,7 @@ export class CommentsController {
     return this.commentsService.getComments(query.id);
   }
 
-  @Get('/get-one')
+  @Get('get-one')
   async getComment(
     @Query()
     @DecrementId(['postId', 'commentId'])
