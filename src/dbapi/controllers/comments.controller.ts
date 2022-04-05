@@ -12,13 +12,13 @@ import {
 } from '@nestjs/common';
 import { DecrementId } from '../../utils/decrement-id.decorator';
 import { CommentDTO } from '../dto/comment.dto';
-import { PostsDTO } from '../dto/post.dto';
 import { CommentsService } from '../modules/comments/comments.service';
 import { Express, Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { join } from 'path';
 import { Multer } from 'multer';
 import { LoggingInterceptor } from '../modules/logger/logger.interceptor';
+import { Comment } from '../database/entities/comment.entity';
 
 @Controller('comments')
 @UseInterceptors(LoggingInterceptor)
@@ -52,7 +52,7 @@ export class CommentsController {
 
   @Post('create')
   async createComment(
-    @Query() @DecrementId(['id']) query: { id: number },
+    @Query() query: { id: number },
     @Body() data: CommentDTO,
   ): Promise<CommentDTO> {
     return this.commentsService.createComment(query.id, data);
@@ -61,7 +61,7 @@ export class CommentsController {
   @Delete('delete')
   async deleteComment(
     @Body() body: { postId: number; commentId: number },
-  ): Promise<PostsDTO[]> {
+  ): Promise<Comment> {
     return this.commentsService.deleteComment(body.postId, body.commentId);
   }
 

@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Posts } from './database/entities/post.entity';
+import { Posts } from '../../database/entities/post.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PostsDTO } from '../../dto/post.dto';
 
 @Injectable()
-export class AppService {
+export class PostsService {
   constructor(
     @InjectRepository(Posts)
     private readonly postsRepository: Repository<Posts>,
@@ -23,14 +24,14 @@ export class AppService {
     });
   }
 
-  async createPost(data: Posts): Promise<Posts> {
+  async createPost(data: PostsDTO): Promise<Posts> {
     return this.postsRepository.save(data);
   }
 
-  async updatePost(data: Posts): Promise<Posts> {
+  async updatePost(id: number, data: PostsDTO): Promise<Posts> {
     const existingPost = await this.postsRepository.findOne({
       where: {
-        id: data.id,
+        id: id,
       },
     });
     return this.postsRepository.save({

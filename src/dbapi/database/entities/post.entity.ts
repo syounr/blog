@@ -16,10 +16,10 @@ export class Posts {
   @Column({ name: 'name', type: 'text' })
   name!: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt!: Date;
 
   @Column({ name: 'description', type: 'text' })
