@@ -33,7 +33,6 @@ export class CommentsService {
   }
 
   async createComment(postId: number, data: CommentDTO): Promise<CommentDTO> {
-    await this.mailService.sendLogMessage('gbtestar@mail.ru');
     return this.commentsRepository.save({
       postId: postId,
       ...data,

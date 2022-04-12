@@ -21,7 +21,17 @@ export class PostsService {
       where: {
         id,
       },
-    });
+      relations: ['comments']
+    },);
+  }
+
+  async getPostByName(name: string): Promise<Posts | undefined> {
+    return this.postsRepository.findOne({
+      where: {
+        name
+      },
+      relations: ['comments']
+    },);
   }
 
   async createPost(data: PostsDTO): Promise<Posts> {

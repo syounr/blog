@@ -13,6 +13,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './database/entities/user.entity';
 import { UsersRoles } from './database/entities/users-roles.entity';
 import { Role } from './database/entities/role.entity';
+import { AlertController } from './modules/ws/alert/alert.controller';
+import { ChatGateway } from './modules/ws/chat/chat.gateway';
+import { AlertGateway } from './modules/ws/alert/alert.gateway';
 
 @Module({
   imports: [
@@ -24,6 +27,7 @@ import { Role } from './database/entities/role.entity';
     RolesModule,
     SessionsModule
   ],
-  controllers: [PostsController, CommentsController, AuthController, RolesController],
+  controllers: [PostsController, CommentsController, AuthController, RolesController, AlertController],
+  providers: [ChatGateway, AlertGateway],
 })
 export class ApiModule {}

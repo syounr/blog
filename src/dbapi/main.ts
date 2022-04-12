@@ -9,6 +9,8 @@ async function bootstrap() {
     bufferLogs: true,
   });
 
+  app.useStaticAssets(join(__dirname, '../..', 'static'));
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,

@@ -7,4 +7,8 @@ export class CommentDTO {
   @IsOptional()
   @IsDate()
   createdAt!: Date;
+
+  @IsString()
+  @IsOptional()
+  autor!: string;
 }

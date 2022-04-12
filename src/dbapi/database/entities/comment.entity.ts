@@ -19,6 +19,9 @@ export class Comment {
   @Column({ type: 'int' })
   postId!: number;
 
+  @Column({ type: 'text', nullable: true })
+  autor!: string;
+
   @ManyToOne(() => Posts)
   @JoinColumn()
   post!: Posts;
