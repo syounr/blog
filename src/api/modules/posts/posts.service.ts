@@ -1,24 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { PostsDTO } from '../../dto/post.dto';
 
-const posts: PostsDTO[] = [
+const posts:PostsDTO[] = [
   {
     id: 1,
     name: 'fitst',
     description: 'first',
     text: 'first',
-    createdAt: new Date(Date.now()),
-    updatedAt: new Date(Date.now()),
+    createdAt: new Date(Date.parse('2022-04-19T18:11:10.386Z')),
+    updatedAt: new Date(Date.parse('2022-04-19T18:11:10.386Z')),
     comments: [
       {
         id: 1,
         text: 'comment',
-        createdAt: new Date(Date.now()),
+        createdAt: new Date(Date.parse('2022-04-19T18:11:10.386Z')),
       },
       {
         id: 2,
         text: 'second comment',
-        createdAt: new Date(Date.now()),
+        createdAt: new Date(Date.parse('2022-04-19T18:11:10.386Z')),
       },
     ],
   },

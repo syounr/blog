@@ -29,8 +29,8 @@ export class PostsController {
     return this.postsService.getPost(query.id);
   }
   
-  @Roles("User")
-  @UseGuards(RolesGuard)
+  // @Roles("User")
+  // @UseGuards(RolesGuard)
   @Post('create')
   async createPost(@Body() data: PostsDTO): Promise<Posts> {
     return this.postsService.createPost(data);

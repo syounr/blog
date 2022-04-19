@@ -1,0 +1,2 @@
+./ngrok config add-authtoken
+./ngrok http 3000

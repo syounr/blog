@@ -12,7 +12,7 @@ export class PostsService {
   ) {}
 
   async getPosts(): Promise<Posts[]> {
-    const posts = this.postsRepository.find({ relations: ['comments'] });
+    const posts = await this.postsRepository.find({ relations: ['comments'] });
     return posts;
   }
 
